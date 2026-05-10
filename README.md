@@ -6,9 +6,12 @@ To-Do List simples desenvolvida com HTML, CSS e JavaScript vanilla, como exercí
 
 ```
 sdd-to-do-list/
-├── index.html   # Estrutura da página
-├── style.css    # Estilos visuais
-├── app.js       # Lógica da aplicação
+├── index.html       # Estrutura da página
+├── style.css        # Estilos visuais
+├── js/
+│   ├── controller.js  # Lógica de controle (MVC)
+│   ├── model.js       # Modelo de dados
+│   └── view.js        # Renderização e DOM
 └── README.md
 ```
 
@@ -19,6 +22,5 @@ sdd-to-do-list/
 - JavaScript (ES6+)
 
 ## Como executar
-
-Abra o arquivo `index.html` diretamente no navegador.
+Use um servidor local (ex: Live Server no VS Code) e acesse via `http://localhost:5500` (exemplo).
 

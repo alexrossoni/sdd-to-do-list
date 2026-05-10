@@ -7,6 +7,7 @@ const STORAGE_KEY = 'sdd-todo-tasks';
  * @property {string} text - Task description (trimmed, 1–120 chars)
  * @property {boolean} done - false = pending, true = completed
  * @property {string} createdAt - ISO 8601 creation timestamp
+ * @property {string|null} deadline - Local-time deadline (YYYY-MM-DDTHH:MM) or null
  */
 
 /**
@@ -19,7 +20,10 @@ export function loadTasks() {
     if (raw === null) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    return parsed;
+    return parsed.map(task => ({
+      ...task,
+      deadline: task.deadline !== undefined ? task.deadline : null,
+    }));
   } catch {
     return [];
   }
@@ -52,16 +56,46 @@ export function validateTaskText(text) {
  * Return new array with new Task appended. Does NOT validate.
  * @param {Task[]} tasks
  * @param {string} text
+ * @param {string|null} [deadline]
  * @returns {Task[]}
  */
-export function addTask(tasks, text) {
+export function addTask(tasks, text, deadline = null) {
   const newTask = {
     id: Date.now().toString(),
     text: text.trim(),
     done: false,
     createdAt: new Date().toISOString(),
+    deadline: deadline || null,
   };
   return [...tasks, newTask];
+}
+
+/**
+ * Return true when the task has a past deadline and is not done.
+ * @param {Task} task
+ * @returns {boolean}
+ */
+export function isOverdue(task) {
+  return task.deadline !== null && !task.done && new Date(task.deadline) <= new Date();
+}
+
+/**
+ * Return new array sorted by deadline ascending (null-deadline tasks last);
+ * ties broken by createdAt ascending.
+ * @param {Task[]} tasks
+ * @returns {Task[]}
+ */
+export function sortTasksByDeadline(tasks) {
+  return [...tasks].sort((a, b) => {
+    if (a.deadline === null && b.deadline === null) {
+      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
+    }
+    if (a.deadline === null) return 1;
+    if (b.deadline === null) return -1;
+    if (a.deadline < b.deadline) return -1;
+    if (a.deadline > b.deadline) return 1;
+    return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
+  });
 }
 
 /**

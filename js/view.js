@@ -1,8 +1,11 @@
+import { isOverdue } from './model.js';
+
 // Private DOM references
 const formEl = document.getElementById('js-todo-form');
 const inputEl = document.getElementById('js-task-input');
 const errorEl = document.getElementById('js-input-error');
 const listEl = document.getElementById('js-todo-list');
+const deadlineInputEl = document.getElementById('js-deadline-input');
 
 /**
  * Return current #js-task-input value.
@@ -17,6 +20,21 @@ export function getInputValue() {
  */
 export function clearInput() {
   inputEl.value = '';
+}
+
+/**
+ * Return current #js-deadline-input value, or null if empty.
+ * @returns {string|null}
+ */
+export function getDeadlineValue() {
+  return deadlineInputEl.value || null;
+}
+
+/**
+ * Clear #js-deadline-input.
+ */
+export function clearDeadline() {
+  deadlineInputEl.value = '';
 }
 
 /**
@@ -42,8 +60,9 @@ export function clearInputError() {
  * @returns {HTMLLIElement}
  */
 export function renderTaskItem(task) {
+  const overdueClass = isOverdue(task) ? ' todo-item--overdue' : '';
   const li = document.createElement('li');
-  li.className = `todo-item ${task.done ? 'todo-item--done' : 'todo-item--pending'} todo-item--entering`;
+  li.className = `todo-item ${task.done ? 'todo-item--done' : 'todo-item--pending'} todo-item--entering${overdueClass}`;
   li.dataset.taskId = task.id;
   li.dataset.js = 'todo-item';
 
@@ -66,6 +85,17 @@ export function renderTaskItem(task) {
 
   li.appendChild(toggleBtn);
   li.appendChild(textSpan);
+
+  if (task.deadline !== null) {
+    const [datePart, timePart] = task.deadline.split('T');
+    const [, month, day] = datePart.split('-');
+    const deadlineSpan = document.createElement('span');
+    deadlineSpan.className = 'todo-item__deadline';
+    deadlineSpan.dataset.js = 'deadline-label';
+    deadlineSpan.textContent = `due: ${day}/${month} ${timePart}`;
+    li.appendChild(deadlineSpan);
+  }
+
   li.appendChild(removeBtn);
 
   li.addEventListener('animationend', () => {
