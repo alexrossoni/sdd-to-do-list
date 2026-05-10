@@ -21,9 +21,9 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Purpose**: Replace empty stubs with the correct file structure; wire the ES Module entry point.
 
-- [ ] T001 Create `js/` directory; create `js/model.js`, `js/view.js`, `js/controller.js` as empty ES module stubs (each file exports an empty object or named placeholder so imports resolve)
-- [ ] T002 Replace `index.html` stub with full semantic HTML shell per `contracts/ui-contract.md` §1 — `<main>`, `<header>`, `<form>`, `<ul>` with all BEM classes, `id` hooks, `data-js` attributes, and ARIA attributes; replace `<script src="app.js">` with `<script type="module" src="js/controller.js">`
-- [ ] T003 [P] Delete `app.js` from the project root (stub is superseded by `js/controller.js`)
+- [x] T001 Create `js/` directory; create `js/model.js`, `js/view.js`, `js/controller.js` as empty ES module stubs (each file exports an empty object or named placeholder so imports resolve)
+- [x] T002 Replace `index.html` stub with full semantic HTML shell per `contracts/ui-contract.md` §1 — `<main>`, `<header>`, `<form>`, `<ul>` with all BEM classes, `id` hooks, `data-js` attributes, and ARIA attributes; replace `<script src="app.js">` with `<script type="module" src="js/controller.js">`
+- [x] T003 [P] Delete `app.js` from the project root (stub is superseded by `js/controller.js`)
 
 **Checkpoint**: Opening the app in a local server should show the HTML shell with no JS errors in the console.
 
@@ -33,9 +33,9 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Purpose**: Shared constants, DOM ref helpers, and controller skeleton that every user story depends on. No user story work begins until this phase is complete.
 
-- [ ] T004 Define `const STORAGE_KEY = 'sdd-todo-tasks'` and a `@typedef {Object} Task` JSDoc block (fields: `id`, `text`, `done`, `createdAt`) at the top of `js/model.js`
-- [ ] T005 [P] Add private DOM getter helpers in `js/view.js` — use `getElementById` / `querySelector` to resolve `#js-todo-form`, `#js-task-input`, `#js-input-error`, `#js-todo-list`; assign to module-scoped `const` references used by all view functions
-- [ ] T006 Add `import` statements at top of `js/controller.js` for all public symbols from `./model.js` and `./view.js`; define `let state = { tasks: [] }`; write `function init() {}` stub and call `init()` at module bottom
+- [x] T004 Define `const STORAGE_KEY = 'sdd-todo-tasks'` and a `@typedef {Object} Task` JSDoc block (fields: `id`, `text`, `done`, `createdAt`) at the top of `js/model.js`
+- [x] T005 [P] Add private DOM getter helpers in `js/view.js` — use `getElementById` / `querySelector` to resolve `#js-todo-form`, `#js-task-input`, `#js-input-error`, `#js-todo-list`; assign to module-scoped `const` references used by all view functions
+- [x] T006 Add `import` statements at top of `js/controller.js` for all public symbols from `./model.js` and `./view.js`; define `let state = { tasks: [] }`; write `function init() {}` stub and call `init()` at module bottom
 
 **Checkpoint**: Browser console shows no import errors; `init()` runs on page load (add a temporary `console.log` to verify, then remove).
 
@@ -47,12 +47,12 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Independent Test**: Open the app, type "Buy groceries", press Enter → item appears in the list and the input field is empty.
 
-- [ ] T007 [P] [US1] Implement `export function addTask(tasks, text)` in `js/model.js` — returns new `Task[]` with one item appended: `{ id: Date.now().toString(), text: text.trim(), done: false, createdAt: new Date().toISOString() }`
-- [ ] T008 [P] [US1] Implement `export function getInputValue()` and `export function clearInput()` in `js/view.js` — read and clear `#js-task-input` value
-- [ ] T009 [US1] Implement `export function renderTaskItem(task)` in `js/view.js` — creates `<li>` with `data-task-id`, `data-js="todo-item"`, and correct BEM classes; creates toggle `<button>`, text `<span>` (assigned via `textContent` only), remove `<button>` per `contracts/ui-contract.md` §1; applies `todo-item--pending` modifier
-- [ ] T010 [US1] Implement `export function renderTaskList(tasks)` in `js/view.js` — clears `#js-todo-list` and either renders all items via `renderTaskItem` or inserts `<p class="todo-list__empty">&gt; no tasks. type above and press enter.</p>` when `tasks.length === 0`
-- [ ] T011 [US1] Implement `export function bindFormSubmit(handler)` in `js/view.js` — attaches `submit` listener to `#js-todo-form`, calls `event.preventDefault()`, then invokes `handler`
-- [ ] T012 [US1] Implement `handleAddTask()` in `js/controller.js` — reads input via `getInputValue()`, calls `addTask(state.tasks, text)`, updates `state.tasks`, calls `renderTaskList(state.tasks)` and `clearInput()`; wire `bindFormSubmit(handleAddTask)` inside `init()` and call `renderTaskList(state.tasks)` in `init()`
+- [x] T007 [P] [US1] Implement `export function addTask(tasks, text)` in `js/model.js` — returns new `Task[]` with one item appended: `{ id: Date.now().toString(), text: text.trim(), done: false, createdAt: new Date().toISOString() }`
+- [x] T008 [P] [US1] Implement `export function getInputValue()` and `export function clearInput()` in `js/view.js` — read and clear `#js-task-input` value
+- [x] T009 [US1] Implement `export function renderTaskItem(task)` in `js/view.js` — creates `<li>` with `data-task-id`, `data-js="todo-item"`, and correct BEM classes; creates toggle `<button>`, text `<span>` (assigned via `textContent` only), remove `<button>` per `contracts/ui-contract.md` §1; applies `todo-item--pending` modifier
+- [x] T010 [US1] Implement `export function renderTaskList(tasks)` in `js/view.js` — clears `#js-todo-list` and either renders all items via `renderTaskItem` or inserts `<p class="todo-list__empty">&gt; no tasks. type above and press enter.</p>` when `tasks.length === 0`
+- [x] T011 [US1] Implement `export function bindFormSubmit(handler)` in `js/view.js` — attaches `submit` listener to `#js-todo-form`, calls `event.preventDefault()`, then invokes `handler`
+- [x] T012 [US1] Implement `handleAddTask()` in `js/controller.js` — reads input via `getInputValue()`, calls `addTask(state.tasks, text)`, updates `state.tasks`, calls `renderTaskList(state.tasks)` and `clearInput()`; wire `bindFormSubmit(handleAddTask)` inside `init()` and call `renderTaskList(state.tasks)` in `init()`
 
 **Checkpoint**: Add multiple tasks — each appears at the bottom of the list; input clears after each submit; the list is fully re-rendered on every add.
 
@@ -64,11 +64,11 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Independent Test**: Submit form with empty input → inline error appears, no new item added. Start typing → error disappears.
 
-- [ ] T013 [P] [US4] Implement `export function validateTaskText(text)` in `js/model.js` — returns `{ valid: false, error: "Task cannot be empty." }` if `text.trim().length === 0`; `{ valid: false, error: "Task cannot exceed 120 characters." }` if `text.trim().length > 120`; otherwise `{ valid: true, error: null }`
-- [ ] T014 [P] [US4] Implement `export function showInputError(message)` and `export function clearInputError()` in `js/view.js` — `showInputError` sets `#js-input-error` `textContent` and adds class `todo-form__input--error` to `#js-task-input`; `clearInputError` clears the span and removes the class
-- [ ] T015 [US4] Implement `export function bindInputChange(handler)` in `js/view.js` — attaches `input` event listener to `#js-task-input` that invokes `handler`
-- [ ] T016 [US4] Implement `handleInputChange()` in `js/controller.js` (calls `clearInputError()`); integrate `validateTaskText` into `handleAddTask()` — on invalid result call `showInputError(error)` and return early, keeping focus on input; on valid result proceed to add; wire `bindInputChange(handleInputChange)` inside `init()`
-- [ ] T017 [P] [US4] Add `.todo-form__input--error` modifier styles (theme-consistent error border/colour) and `.todo-form__error` visibility styles (hidden when empty, visible when non-empty) in `style.css`
+- [x] T013 [P] [US4] Implement `export function validateTaskText(text)` in `js/model.js` — returns `{ valid: false, error: "Task cannot be empty." }` if `text.trim().length === 0`; `{ valid: false, error: "Task cannot exceed 120 characters." }` if `text.trim().length > 120`; otherwise `{ valid: true, error: null }`
+- [x] T014 [P] [US4] Implement `export function showInputError(message)` and `export function clearInputError()` in `js/view.js` — `showInputError` sets `#js-input-error` `textContent` and adds class `todo-form__input--error` to `#js-task-input`; `clearInputError` clears the span and removes the class
+- [x] T015 [US4] Implement `export function bindInputChange(handler)` in `js/view.js` — attaches `input` event listener to `#js-task-input` that invokes `handler`
+- [x] T016 [US4] Implement `handleInputChange()` in `js/controller.js` (calls `clearInputError()`); integrate `validateTaskText` into `handleAddTask()` — on invalid result call `showInputError(error)` and return early, keeping focus on input; on valid result proceed to add; wire `bindInputChange(handleInputChange)` inside `init()`
+- [x] T017 [P] [US4] Add `.todo-form__input--error` modifier styles (theme-consistent error border/colour) and `.todo-form__error` visibility styles (hidden when empty, visible when non-empty) in `style.css`
 
 **Checkpoint**: Empty submit → inline error, no item added; 121-char paste + submit → length error; start typing → error clears.
 
@@ -80,10 +80,10 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Independent Test**: Add a task, click its toggle → strikethrough + reduced opacity. Click again → reverts to normal.
 
-- [ ] T018 [P] [US2] Implement `export function toggleTask(tasks, id)` in `js/model.js` — returns new `Task[]` where the item matching `id` has its `done` field flipped; all other items unchanged
-- [ ] T019 [P] [US2] Implement `export function bindToggleTask(handler)` in `js/view.js` — attaches delegated `click` listener on `#js-todo-list`; on click, checks `event.target.closest('[data-js="toggle-btn"]')`, reads `data-task-id` from the parent `<li>`, invokes `handler(id)`
-- [ ] T020 [US2] Implement `handleToggleTask(id)` in `js/controller.js` — calls `toggleTask(state.tasks, id)`, updates `state.tasks`, calls `renderTaskList(state.tasks)`; wire `bindToggleTask(handleToggleTask)` inside `init()`; update `renderTaskItem` in `js/view.js` to apply `todo-item--done` (instead of `todo-item--pending`) and set correct `aria-label` on toggle button when `task.done === true`
-- [ ] T021 [P] [US2] Add `.todo-item--done` CSS modifier in `style.css` — applies `text-decoration: line-through` and reduced `opacity` on `.todo-item__text`
+- [x] T018 [P] [US2] Implement `export function toggleTask(tasks, id)` in `js/model.js` — returns new `Task[]` where the item matching `id` has its `done` field flipped; all other items unchanged
+- [x] T019 [P] [US2] Implement `export function bindToggleTask(handler)` in `js/view.js` — attaches delegated `click` listener on `#js-todo-list`; on click, checks `event.target.closest('[data-js="toggle-btn"]')`, reads `data-task-id` from the parent `<li>`, invokes `handler(id)`
+- [x] T020 [US2] Implement `handleToggleTask(id)` in `js/controller.js` — calls `toggleTask(state.tasks, id)`, updates `state.tasks`, calls `renderTaskList(state.tasks)`; wire `bindToggleTask(handleToggleTask)` inside `init()`; update `renderTaskItem` in `js/view.js` to apply `todo-item--done` (instead of `todo-item--pending`) and set correct `aria-label` on toggle button when `task.done === true`
+- [x] T021 [P] [US2] Add `.todo-item--done` CSS modifier in `style.css` — applies `text-decoration: line-through` and reduced `opacity` on `.todo-item__text`
 
 **Checkpoint**: Toggle a pending item → done styling; toggle again → pending styling; other items unaffected.
 
@@ -95,9 +95,9 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Independent Test**: Add a task, click remove → task gone; reload → task still gone.
 
-- [ ] T022 [P] [US3] Implement `export function removeTask(tasks, id)` in `js/model.js` — returns new `Task[]` filtered to exclude the item matching `id`
-- [ ] T023 [P] [US3] Implement `export function bindRemoveTask(handler)` in `js/view.js` — attaches delegated `click` listener on `#js-todo-list`; on click checks `event.target.closest('[data-js="remove-btn"]')`, reads `data-task-id` from parent `<li>`, invokes `handler(id)`
-- [ ] T024 [US3] Implement `handleRemoveTask(id)` in `js/controller.js` — calls `removeTask(state.tasks, id)`, updates `state.tasks`, calls `renderTaskList(state.tasks)`; wire `bindRemoveTask(handleRemoveTask)` inside `init()`
+- [x] T022 [P] [US3] Implement `export function removeTask(tasks, id)` in `js/model.js` — returns new `Task[]` filtered to exclude the item matching `id`
+- [x] T023 [P] [US3] Implement `export function bindRemoveTask(handler)` in `js/view.js` — attaches delegated `click` listener on `#js-todo-list`; on click checks `event.target.closest('[data-js="remove-btn"]')`, reads `data-task-id` from parent `<li>`, invokes `handler(id)`
+- [x] T024 [US3] Implement `handleRemoveTask(id)` in `js/controller.js` — calls `removeTask(state.tasks, id)`, updates `state.tasks`, calls `renderTaskList(state.tasks)`; wire `bindRemoveTask(handleRemoveTask)` inside `init()`
 
 **Checkpoint**: Remove all tasks one by one → empty state placeholder appears; reload confirms tasks do not reappear.
 
@@ -109,9 +109,9 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Independent Test**: Add 3 tasks, complete 1, remove 1, reload → 2 tasks remain with correct completion states.
 
-- [ ] T025 [P] [US5] Implement `export function loadTasks()` in `js/model.js` — reads `localStorage.getItem(STORAGE_KEY)`; if null returns `[]`; wraps `JSON.parse` in `try/catch`, returns `[]` on any error; validates result is an `Array`, returns `[]` if not
-- [ ] T026 [P] [US5] Implement `export function saveTasks(tasks)` in `js/model.js` — calls `localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))`
-- [ ] T027 [US5] Wire persistence in `js/controller.js` — in `init()` replace `state.tasks = []` with `state.tasks = loadTasks()`; add `saveTasks(state.tasks)` call after every `state.tasks` mutation in `handleAddTask`, `handleToggleTask`, and `handleRemoveTask`
+- [x] T025 [P] [US5] Implement `export function loadTasks()` in `js/model.js` — reads `localStorage.getItem(STORAGE_KEY)`; if null returns `[]`; wraps `JSON.parse` in `try/catch`, returns `[]` on any error; validates result is an `Array`, returns `[]` if not
+- [x] T026 [P] [US5] Implement `export function saveTasks(tasks)` in `js/model.js` — calls `localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))`
+- [x] T027 [US5] Wire persistence in `js/controller.js` — in `init()` replace `state.tasks = []` with `state.tasks = loadTasks()`; add `saveTasks(state.tasks)` call after every `state.tasks` mutation in `handleAddTask`, `handleToggleTask`, and `handleRemoveTask`
 
 **Checkpoint**: Add/complete/remove tasks, close and reopen tab → all state is preserved exactly.
 
@@ -121,13 +121,13 @@ description: "Task list for 001-todo-list-core implementation"
 
 **Purpose**: Full visual theme, responsive layout, microanimations, and accessibility hardening.
 
-- [ ] T028 Add Google Fonts `@import` for JetBrains Mono at the top of `style.css`; define CSS custom properties (`--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-error`, `--font-mono`, `--radius`, `--transition-speed`) with dark terminal palette values; apply `font-family: var(--font-mono)` and `background-color: var(--color-bg)` to `body`
-- [ ] T029 [P] Add `.todo-app` layout styles in `style.css` — `max-width: 640px`, horizontally centred (`margin-inline: auto`), vertical padding, `min-height: 100vh`; add responsive adjustments so layout is correct at 320 px viewport width (no horizontal scroll)
-- [ ] T030 [P] Add `.todo-form`, `.todo-form__label`, `.todo-form__row`, `.todo-form__input`, `.todo-form__btn` BEM component styles in `style.css` — flex row, input takes remaining space, terminal-style border, monospaced placeholder, hover/focus states using CSS custom properties
-- [ ] T031 [P] Add `.todo-list`, `.todo-item`, `.todo-item--pending`, `.todo-item__toggle`, `.todo-item__text`, `.todo-item__remove` BEM component styles in `style.css` — list-style none, flex row, border separator, toggle and remove buttons minimal with visible hover/focus states
-- [ ] T032 [P] Add `.todo-list__empty` styles in `style.css` — muted foreground colour, monospaced, left-aligned, consistent padding matching list items
-- [ ] T033 Add CSS `@keyframes todo-enter` (fade + slide-in from top, 200 ms ease-out) and `@keyframes todo-leave` (fade + slide-out to right, 200 ms ease-in) in `style.css`; in `js/view.js`, add `todo-item--entering` class to new `<li>` in `renderTaskItem` and remove it on `animationend` (`{ once: true }`); add `export function animateRemoval(li, callback)` that adds `todo-item--leaving`, waits for `animationend`, then calls `callback`; update `handleRemoveTask` in `js/controller.js` to call `animateRemoval(getTaskElement(id), () => { ... })` instead of calling `removeTask` directly — add `export function getTaskElement(id)` in `js/view.js` that returns `document.querySelector('[data-task-id="' + id + '"]')`
-- [ ] T034 [P] Verify all ARIA attributes per `contracts/ui-contract.md` §5 are present in `index.html` and `js/view.js` — `aria-describedby`, `aria-live="polite"`, `role="alert"` on error span, correct `aria-label` values on all buttons; manually test full keyboard navigation (Tab → Enter/Space) with no focus traps
+- [x] T028 Add Google Fonts `@import` for JetBrains Mono at the top of `style.css`; define CSS custom properties (`--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-error`, `--font-mono`, `--radius`, `--transition-speed`) with dark terminal palette values; apply `font-family: var(--font-mono)` and `background-color: var(--color-bg)` to `body`
+- [x] T029 [P] Add `.todo-app` layout styles in `style.css` — `max-width: 640px`, horizontally centred (`margin-inline: auto`), vertical padding, `min-height: 100vh`; add responsive adjustments so layout is correct at 320 px viewport width (no horizontal scroll)
+- [x] T030 [P] Add `.todo-form`, `.todo-form__label`, `.todo-form__row`, `.todo-form__input`, `.todo-form__btn` BEM component styles in `style.css` — flex row, input takes remaining space, terminal-style border, monospaced placeholder, hover/focus states using CSS custom properties
+- [x] T031 [P] Add `.todo-list`, `.todo-item`, `.todo-item--pending`, `.todo-item__toggle`, `.todo-item__text`, `.todo-item__remove` BEM component styles in `style.css` — list-style none, flex row, border separator, toggle and remove buttons minimal with visible hover/focus states
+- [x] T032 [P] Add `.todo-list__empty` styles in `style.css` — muted foreground colour, monospaced, left-aligned, consistent padding matching list items
+- [x] T033 Add CSS `@keyframes todo-enter` (fade + slide-in from top, 200 ms ease-out) and `@keyframes todo-leave` (fade + slide-out to right, 200 ms ease-in) in `style.css`; in `js/view.js`, add `todo-item--entering` class to new `<li>` in `renderTaskItem` and remove it on `animationend` (`{ once: true }`); add `export function animateRemoval(li, callback)` that adds `todo-item--leaving`, waits for `animationend`, then calls `callback`; update `handleRemoveTask` in `js/controller.js` to call `animateRemoval(getTaskElement(id), () => { ... })` instead of calling `removeTask` directly — add `export function getTaskElement(id)` in `js/view.js` that returns `document.querySelector('[data-task-id="' + id + '"]')`
+- [x] T034 [P] Verify all ARIA attributes per `contracts/ui-contract.md` §5 are present in `index.html` and `js/view.js` — `aria-describedby`, `aria-live="polite"`, `role="alert"` on error span, correct `aria-label` values on all buttons; manually test full keyboard navigation (Tab → Enter/Space) with no focus traps
 
 **Checkpoint**: Visual match to retro-terminal aesthetic; all interactions animate smoothly; no horizontal scroll at 320 px; full keyboard navigation works.
 
