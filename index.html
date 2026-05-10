@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>_todo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="todo-app">
+
+    <header class="todo-app__header">
+      <h1 class="todo-app__title">_todo</h1>
+    </header>
+
+    <form class="todo-form" id="js-todo-form" novalidate>
+      <label class="todo-form__label" for="js-task-input">
+        new task
+      </label>
+      <div class="todo-form__row">
+        <input
+          class="todo-form__input"
+          id="js-task-input"
+          type="text"
+          autocomplete="off"
+          maxlength="120"
+          aria-describedby="js-input-error"
+          placeholder="> type here..."
+        />
+        <button
+          class="todo-form__btn"
+          type="submit"
+          data-js="submit-btn"
+          aria-label="Add task"
+        >
+          add
+        </button>
+      </div>
+      <span
+        class="todo-form__error"
+        id="js-input-error"
+        aria-live="polite"
+        role="alert"
+      ></span>
+    </form>
+
+    <ul
+      class="todo-list"
+      id="js-todo-list"
+      aria-label="Task list"
+    >
+      <p class="todo-list__empty">&gt; no tasks. type above and press enter.</p>
+    </ul>
+
+  </main>
+
+  <script type="module" src="js/controller.js"></script>
+</body>
+</html>

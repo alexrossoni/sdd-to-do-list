@@ -1,0 +1,289 @@
+/* T028 — Google Fonts: JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* T028 — CSS Custom Properties: dark terminal palette */
+:root {
+  --color-bg: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-border: #2e2e2e;
+  --color-text: #e0e0e0;
+  --color-text-muted: #6b6b6b;
+  --color-accent: #39ff14;
+  --color-error: #ff4444;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  --radius: 2px;
+  --transition-speed: 180ms;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* T028 — Base body styles */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* =====================================================================
+   T029 — .todo-app layout
+   ===================================================================== */
+
+.todo-app {
+  max-width: 640px;
+  margin-inline: auto;
+  padding: 3rem 1.25rem 4rem;
+  min-height: 100vh;
+}
+
+.todo-app__header {
+  margin-bottom: 2rem;
+}
+
+.todo-app__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+/* =====================================================================
+   T030 — .todo-form BEM component
+   ===================================================================== */
+
+.todo-form {
+  margin-bottom: 2rem;
+}
+
+.todo-form__label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.todo-form__row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.todo-form__input {
+  flex: 1;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition-speed);
+}
+
+.todo-form__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.todo-form__input:focus {
+  border-color: var(--color-accent);
+}
+
+/* T017 — Error modifier */
+.todo-form__input--error {
+  border-color: var(--color-error);
+}
+
+.todo-form__btn {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.todo-form__btn:hover,
+.todo-form__btn:focus-visible {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  outline: none;
+}
+
+/* T017 — Error span visibility */
+.todo-form__error {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-error);
+  margin-top: 0.35rem;
+  min-height: 1.1rem;
+}
+
+/* =====================================================================
+   T031 — .todo-list and .todo-item BEM components
+   ===================================================================== */
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+/* T021 — .todo-item--done modifier */
+.todo-item--done .todo-item__text {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+.todo-item__toggle {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background-color: transparent;
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+  transition: border-color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.todo-item__toggle:hover,
+.todo-item__toggle:focus-visible {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.todo-item--done .todo-item__toggle {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.todo-item--done .todo-item__toggle::after {
+  content: '';
+  display: block;
+  width: 0.3rem;
+  height: 0.55rem;
+  border: 2px solid var(--color-bg);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0.05rem;
+  left: 0.28rem;
+}
+
+.todo-item__text {
+  flex: 1;
+  word-break: break-word;
+  transition: opacity var(--transition-speed);
+}
+
+.todo-item__remove {
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  line-height: 1;
+  transition: color var(--transition-speed);
+}
+
+.todo-item__remove::before {
+  content: '×';
+}
+
+.todo-item__remove:hover,
+.todo-item__remove:focus-visible {
+  color: var(--color-error);
+  outline: none;
+}
+
+/* =====================================================================
+   T032 — .todo-list__empty
+   ===================================================================== */
+
+.todo-list__empty {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.65rem 0;
+}
+
+/* =====================================================================
+   T033 — Microanimations
+   ===================================================================== */
+
+@keyframes todo-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes todo-leave {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+.todo-item--entering {
+  animation: todo-enter 200ms ease-out both;
+}
+
+.todo-item--leaving {
+  animation: todo-leave 200ms ease-in both;
+  pointer-events: none;
+}
+
+/* =====================================================================
+   Responsive — 320px viewport (T029)
+   ===================================================================== */
+
+@media (max-width: 360px) {
+  .todo-app {
+    padding: 1.5rem 0.75rem 2rem;
+  }
+
+  .todo-form__row {
+    flex-direction: column;
+  }
+
+  .todo-form__btn {
+    width: 100%;
+  }
+}
+
