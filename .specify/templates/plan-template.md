@@ -47,6 +47,17 @@ specs/[###-feature]/
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```
 
+### MkDocs Documentation (repository root)
+
+Every feature MUST add or update the relevant page(s) under `docs/`. The MkDocs site MUST build without errors after any change to `main`.
+
+```text
+docs/
+└── features/
+    └── [###-feature-name].md   # Human-readable summary of this feature
+mkdocs.yml                       # Updated nav if a new page is added
+```
+
 ### Source Code (repository root)
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
