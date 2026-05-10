@@ -17,9 +17,9 @@
 
 **Purpose**: Scaffold the MkDocs project and configure the `.gitignore` entry — prerequisites for all user stories.
 
-- [ ] T001 Run `mkdocs new .` at the repository root to scaffold `mkdocs.yml` and the initial `docs/index.md` placeholder (if `mkdocs.yml` does not already exist)
-- [ ] T002 Replace the scaffolded `mkdocs.yml` with the configured version: `site_name: SDD To-Do List`, `theme.name: mkdocs`, `strict: true`, and the explicit `nav:` block defined in `contracts/ui-contract.md`
-- [ ] T003 [P] Add `site/` entry to `.gitignore` at the repository root to prevent build output from being committed to `main`
+- [X] T001 Run `mkdocs new .` at the repository root to scaffold `mkdocs.yml` and the initial `docs/index.md` placeholder (if `mkdocs.yml` does not already exist)
+- [X] T002 Replace the scaffolded `mkdocs.yml` with the configured version: `site_name: SDD To-Do List`, `theme.name: mkdocs`, `strict: true`, and the explicit `nav:` block defined in `contracts/ui-contract.md`
+- [X] T003 [P] Add `site/` entry to `.gitignore` at the repository root to prevent build output from being committed to `main`
 
 **Checkpoint**: `mkdocs.yml` exists at repo root with `strict: true` and the full nav block; `.gitignore` excludes `site/`
 
@@ -31,7 +31,7 @@
 
 **⚠️ CRITICAL**: No user story content tasks can begin until T001–T003 are complete and `mkdocs.yml` is valid.
 
-- [ ] T004 Verify `docs/features/` directory exists at repository root (it should already exist but be empty — create it if absent)
+- [X] T004 Verify `docs/features/` directory exists at repository root (it should already exist but be empty — create it if absent)
 
 **Checkpoint**: `mkdocs.yml` is configured, `docs/features/` exists — content creation can begin
 
@@ -45,11 +45,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Author `docs/index.md`: include H1 heading matching `site_name`, project description with SDD context, Technology Stack section, MVC Architecture section, Features section with relative links to all three feature pages, and Getting Started section (per `contracts/ui-contract.md`)
-- [ ] T006 [P] [US1] Author `docs/features/001-todo-list-core.md`: include H1, Overview, Key Behaviours (task creation, completion toggle, deletion, input validation ≤ 120 chars, localStorage persistence), and User Interface section describing the retro-terminal aesthetic (per `contracts/ui-contract.md`)
-- [ ] T007 [P] [US1] Author `docs/features/002-task-reminders-mobile.md`: include H1, Overview, Key Behaviours (deadline `datetime-local` input, overdue CSS class, Web Notifications API, task sorting by deadline), Permissions note, and Mobile Support note for ≤ 768 px breakpoint (per `contracts/ui-contract.md`)
-- [ ] T008 [P] [US1] Author `docs/features/003-mkdocs-living-docs.md`: include H1, Overview explaining Constitution Principle VI, Key Behaviours (local build, GitHub Pages deployment, strict mode, per-feature pages), Commands code block (`mkdocs build` / `mkdocs gh-deploy`), and Adding a New Feature Page guide (per `contracts/ui-contract.md`)
-- [ ] T009 [US1] Run `mkdocs build` at repository root and resolve any errors or warnings until the command exits with code 0 and zero warnings (depends on T002, T005, T006, T007, T008)
+- [X] T005 [US1] Author `docs/index.md`: include H1 heading matching `site_name`, project description with SDD context, Technology Stack section, MVC Architecture section, Features section with relative links to all three feature pages, and Getting Started section (per `contracts/ui-contract.md`)
+- [X] T006 [P] [US1] Author `docs/features/001-todo-list-core.md`: include H1, Overview, Key Behaviours (task creation, completion toggle, deletion, input validation ≤ 120 chars, localStorage persistence), and User Interface section describing the retro-terminal aesthetic (per `contracts/ui-contract.md`)
+- [X] T007 [P] [US1] Author `docs/features/002-task-reminders-mobile.md`: include H1, Overview, Key Behaviours (deadline `datetime-local` input, overdue CSS class, Web Notifications API, task sorting by deadline), Permissions note, and Mobile Support note for ≤ 768 px breakpoint (per `contracts/ui-contract.md`)
+- [X] T008 [P] [US1] Author `docs/features/003-mkdocs-living-docs.md`: include H1, Overview explaining Constitution Principle VI, Key Behaviours (local build, GitHub Pages deployment, strict mode, per-feature pages), Commands code block (`mkdocs build` / `mkdocs gh-deploy`), and Adding a New Feature Page guide (per `contracts/ui-contract.md`)
+- [X] T009 [US1] Run `mkdocs build` at repository root and resolve any errors or warnings until the command exits with code 0 and zero warnings (depends on T002, T005, T006, T007, T008)
 
 **Checkpoint**: `mkdocs build` exits code 0; all four pages render via `mkdocs serve`; no dead links; User Story 1 is fully functional and independently verifiable
 
@@ -63,9 +63,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T010 [US2] Verify the local git repository has a remote named `origin` pointing to the GitHub repository: `git remote -v` (depends on Phase 3 completion)
-- [ ] T011 [US2] Run `mkdocs gh-deploy` at the repository root; confirm the command builds the site, pushes to the `gh-pages` branch of `origin`, and prints the GitHub Pages URL on success (depends on T010)
-- [ ] T012 [US2] Open the printed GitHub Pages URL in a browser (allow 1–5 minutes for propagation) and confirm the home page loads; verify all navigation links in the sidebar resolve to their respective pages
+- [X] T010 [US2] Verify the local git repository has a remote named `origin` pointing to the GitHub repository: `git remote -v` (depends on Phase 3 completion)
+- [X] T011 [US2] Run `mkdocs gh-deploy` at the repository root; confirm the command builds the site, pushes to the `gh-pages` branch of `origin`, and prints the GitHub Pages URL on success (depends on T010)
+- [X] T012 [US2] Open the printed GitHub Pages URL in a browser (allow 1–5 minutes for propagation) and confirm the home page loads; verify all navigation links in the sidebar resolve to their respective pages
 
 **Checkpoint**: Documentation site is publicly accessible at the GitHub Pages URL; all nav links work on the deployed site; User Story 2 is independently verifiable
 
@@ -79,9 +79,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T013 [P] [US3] Review `docs/features/001-todo-list-core.md` content against the implemented `js/model.js`, `js/view.js`, `js/controller.js` and `index.html` — confirm every behaviour listed exists in the codebase and no future feature is referenced
-- [ ] T014 [P] [US3] Review `docs/features/002-task-reminders-mobile.md` content against the implemented deadline and notification code in `js/model.js`, `js/view.js`, `js/controller.js` and `style.css` — confirm accuracy and no dead references
-- [ ] T015 [US3] Run `mkdocs build` once more after any content corrections from T013–T014 and confirm zero errors and warnings (depends on T013, T014)
+- [X] T013 [P] [US3] Review `docs/features/001-todo-list-core.md` content against the implemented `js/model.js`, `js/view.js`, `js/controller.js` and `index.html` — confirm every behaviour listed exists in the codebase and no future feature is referenced
+- [X] T014 [P] [US3] Review `docs/features/002-task-reminders-mobile.md` content against the implemented deadline and notification code in `js/model.js`, `js/view.js`, `js/controller.js` and `style.css` — confirm accuracy and no dead references
+- [X] T015 [US3] Run `mkdocs build` once more after any content corrections from T013–T014 and confirm zero errors and warnings (depends on T013, T014)
 
 **Checkpoint**: All three feature pages accurately describe only implemented behaviour; no dead references; `mkdocs build` passes; User Story 3 is complete
 
@@ -91,9 +91,9 @@
 
 **Purpose**: Final validation pass using the quickstart checklist and ensuring the full definition of done is met per Constitution Principle VI.
 
-- [ ] T016 [P] Run through all items in `specs/003-mkdocs-living-docs/quickstart.md` verification checklist and confirm every checkbox passes
-- [ ] T017 Confirm `site/` does not appear in `git status` on the `main` branch (i.e., `.gitignore` entry is effective): `git status --short`
-- [ ] T018 Run `mkdocs gh-deploy` one final time to ensure the deployed site reflects all content corrections made during Phase 5
+- [X] T016 [P] Run through all items in `specs/003-mkdocs-living-docs/quickstart.md` verification checklist and confirm every checkbox passes
+- [X] T017 Confirm `site/` does not appear in `git status` on the `main` branch (i.e., `.gitignore` entry is effective): `git status --short`
+- [X] T018 Run `mkdocs gh-deploy` one final time to ensure the deployed site reflects all content corrections made during Phase 5
 
 ---
 
