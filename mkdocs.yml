@@ -1,0 +1,13 @@
+site_name: SDD To-Do List
+site_description: >
+  Uma aplicação de lista de tarefas simples construída com HTML5, CSS3 e JavaScript puro
+  seguindo o padrão MVC, desenvolvida como exercício de Spec-Driven Development (SDD).
+theme:
+  name: mkdocs
+strict: true
+nav:
+  - Home: index.md
+  - Features:
+    - To-Do List Core: features/001-todo-list-core.md
+    - Task Reminders & Mobile: features/002-task-reminders-mobile.md
+    - MkDocs Living Documentation: features/003-mkdocs-living-docs.md

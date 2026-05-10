@@ -1,13 +1,14 @@
 <!--
   SYNC IMPACT REPORT
   ==================
-  Version change: N/A → 1.0.0 (initial ratification)
-  Added sections: Core Principles (5), Technology Stack, Development Workflow, Governance
-  Removed sections: none (initial version)
+  Version change: 1.0.0 → 1.1.0 (MINOR — new principle and documentation tooling added)
+  Added sections: Principle VI (Living Documentation with MkDocs)
+  Removed sections: none
+  Modified sections: Technology Stack (MkDocs row added), Development Workflow (docs step added)
   Templates:
-    - .specify/templates/plan-template.md  ✅ aligned (Constitution Check gate applies)
+    - .specify/templates/plan-template.md  ✅ updated (MkDocs docs step in project structure)
     - .specify/templates/spec-template.md  ✅ aligned (no structural changes needed)
-    - .specify/templates/tasks-template.md ✅ aligned (MVC phases reflected in task phases)
+    - .specify/templates/tasks-template.md ✅ updated (documentation task added to Phase 1 Setup)
   Deferred TODOs: none
 -->
 
@@ -51,17 +52,29 @@ JavaScript code MUST be organized using ES Modules (`import`/`export`) or, where
 - Features that are not explicitly required by the current specification MUST NOT be pre-implemented.
 - Code complexity MUST be justified. Any abstraction layer introduced MUST serve at least two concrete, present use-cases before it is extracted.
 
+### VI. Living Documentation with MkDocs
+
+The project MUST maintain up-to-date documentation using **MkDocs** as the documentation site generator:
+
+- A `docs/` folder at the repository root is the single source of truth for all human-readable project documentation.
+- A `mkdocs.yml` configuration file at the repository root MUST define the site structure.
+- Any feature, behaviour change, architectural decision, or configuration update that is merged into `main` MUST be reflected in the corresponding `docs/` page before the change is considered complete. Documentation is part of the **definition of done**.
+- Spec artifacts (files under `specs/`) are source-of-truth for planning and remain unchanged; their relevant conclusions MUST be summarised in `docs/` for discoverability.
+- The MkDocs site MUST be buildable without errors (`mkdocs build` passes) at all times on the `main` branch.
+- No documentation page may reference a feature or API that no longer exists in the codebase (dead references are a bug).
+
 ## Technology Stack
 
-| Layer      | Technology         | Notes                                   |
-|------------|--------------------|-----------------------------------------|
-| Structure  | HTML5              | Semantic markup, no inline styles       |
-| Styling    | CSS3               | BEM naming, no JavaScript style writes  |
-| Behaviour  | JavaScript ES6+    | ES Modules; no frameworks, no bundlers  |
-| Persistence| `localStorage`     | JSON-serialized task array              |
-| Deployment | Static file server | `index.html` opened directly or via CDN |
+| Layer        | Technology         | Notes                                        |
+|--------------|--------------------|--------------------------------------------|
+| Structure    | HTML5              | Semantic markup, no inline styles            |
+| Styling      | CSS3               | BEM naming, no JavaScript style writes       |
+| Behaviour    | JavaScript ES6+    | ES Modules; no frameworks, no bundlers       |
+| Persistence  | `localStorage`     | JSON-serialized task array                   |
+| Deployment   | Static file server | `index.html` opened directly or via CDN     |
+| Documentation| MkDocs             | `docs/` folder; `mkdocs.yml` at repo root   |
 
-No external runtime dependencies (npm packages, CDN libraries) are permitted without a formal amendment to this constitution.
+No external runtime dependencies (npm packages, CDN libraries) are permitted without a formal amendment to this constitution. MkDocs and its Material theme are permitted as **documentation-only** dev dependencies and MUST NOT be included in the application bundle.
 
 ## Development Workflow
 
@@ -71,6 +84,7 @@ No external runtime dependencies (npm packages, CDN libraries) are permitted wit
 - **Comments**: code MUST be self-documenting through clear naming. Comments are reserved for non-obvious decisions or regulatory/security notes.
 - **Security**: all user input rendered to the DOM MUST be inserted via `textContent` or equivalent safe APIs. Use of `innerHTML` with unsanitized user data is PROHIBITED (XSS prevention).
 - **Accessibility**: interactive elements MUST be keyboard-navigable and MUST carry appropriate ARIA attributes where native semantics are insufficient.
+- **Documentation**: every completed feature or behaviour change MUST include a corresponding update to the relevant `docs/` page. Running `mkdocs build` MUST produce zero errors after any commit to `main`.
 
 ## Governance
 
@@ -86,4 +100,4 @@ Amendments require:
 
 All code contributions MUST be reviewed against the Core Principles before being accepted.
 
-**Version**: 1.0.0 | **Ratified**: 2026-05-10 | **Last Amended**: 2026-05-10
+**Version**: 1.1.0 | **Ratified**: 2026-05-10 | **Last Amended**: 2026-05-10
