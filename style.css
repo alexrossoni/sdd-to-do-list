@@ -130,6 +130,38 @@ body {
   min-height: 1.1rem;
 }
 
+/* Deadline row */
+.todo-form__row--deadline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.todo-form__label--inline {
+  display: inline;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.todo-form__input--deadline {
+  flex: 1;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color var(--transition-speed);
+  color-scheme: dark;
+}
+
+.todo-form__input--deadline:focus {
+  border-color: var(--color-accent);
+}
+
 /* =====================================================================
    T031 — .todo-list and .todo-item BEM components
    ===================================================================== */
@@ -155,6 +187,34 @@ body {
 .todo-item--done .todo-item__text {
   text-decoration: line-through;
   opacity: 0.45;
+}
+
+/* Overdue modifier */
+.todo-item--overdue {
+  border-left: 2px solid #ffaa00;
+  padding-left: 0.5rem;
+  background-color: rgba(255, 170, 0, 0.06);
+}
+
+.todo-item--overdue::after {
+  content: '⚠';
+  font-size: 0.7rem;
+  color: #ffaa00;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Deadline label */
+.todo-item__deadline {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.todo-item--overdue .todo-item__deadline {
+  color: #ffaa00;
 }
 
 .todo-item__toggle {
@@ -284,6 +344,52 @@ body {
 
   .todo-form__btn {
     width: 100%;
+  }
+}
+
+/* =====================================================================
+   Responsive — Mobile touch targets (T017 — US4)
+   ===================================================================== */
+
+@media (max-width: 768px) {
+  /* Touch targets: remove button and add button get 44×44; toggle stays compact */
+  .todo-item__remove,
+  .todo-form__btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .todo-item__toggle {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .todo-item__text,
+  .todo-form__input {
+    font-size: 1rem;
+  }
+
+  .todo-item__deadline,
+  .todo-form__error {
+    font-size: 0.875rem;
+  }
+
+  .todo-item {
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+  }
+
+  /* Deadline row: stack label above input to avoid overflow */
+  .todo-form__row--deadline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .todo-form__input--deadline {
+    width: 100%;
+    font-size: 0.8rem;
   }
 }
 
