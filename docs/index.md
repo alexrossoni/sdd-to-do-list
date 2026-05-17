@@ -30,6 +30,8 @@ e atualizando tanto o estado quanto a exibição.
   destaque de tarefas vencidas, notificações do navegador e layout adaptado para dispositivos móveis.
 - [Documentação Viva com MkDocs](features/003-mkdocs-living-docs.md) — Este site de
   documentação, construído com MkDocs e publicado no GitHub Pages.
+- [Constitution do Projeto](features/004-project-constitution.md) — Regras de qualidade,
+  princípios de arquitetura e workflow de desenvolvimento com justificativas detalhadas.
 
 ## Como Começar
 
